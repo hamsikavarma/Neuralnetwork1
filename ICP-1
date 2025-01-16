@@ -1,0 +1,271 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPLOgiVNGqiGuI3j1JOm2Qm",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/hamsikavarma/Neuralnetwork1/blob/main/ICP-1\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ULQw6l5tJYAg",
+        "outputId": "a33a355c-f0ba-4a01-c649-70c2e843b89f"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter your first name: Hamsika\n",
+            "Enter your last name: Chintakuntla\n",
+            "Full name: Hamsika Chintakuntla\n",
+            "Alternate characters in full name: HmiaCitknl\n"
+          ]
+        }
+      ],
+      "source": [
+        "def string_alternative(input_string):\n",
+        "    return input_string[::2]\n",
+        "\n",
+        "def main():\n",
+        "    first_name = input(\"Enter your first name: \")\n",
+        "    last_name = input(\"Enter your last name: \")\n",
+        "\n",
+        "    full_name = first_name + \" \" + last_name\n",
+        "\n",
+        "    alternate_chars = string_alternative(full_name)\n",
+        "\n",
+        "    print(\"Full name:\", full_name)\n",
+        "    print(\"Alternate characters in full name:\", alternate_chars)\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "    main()"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Create and write to input.txt\n",
+        "with open('input.txt', 'w') as f:\n",
+        "    f.write('Python Course\\n')\n",
+        "    f.write('Deep Learning Course\\n')\n",
+        "\n",
+        "# Verify the file content by reading it\n",
+        "with open('input.txt', 'r') as f:\n",
+        "    content = f.read()\n",
+        "    print(content)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2tkoOAveKzD7",
+        "outputId": "10de07c0-0061-49bc-d92b-5d52f29b686c"
+      },
+      "execution_count": 13,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Python Course\n",
+            "Deep Learning Course\n",
+            "\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def word_count_per_line(input_file, output_file):\n",
+        "    # Read from the input file\n",
+        "    with open(input_file, 'r') as infile:\n",
+        "        lines = infile.readlines()\n",
+        "\n",
+        "    # Dictionary to store the word counts\n",
+        "    word_counts = {}\n",
+        "\n",
+        "    # Process each line and count words\n",
+        "    for line in lines:\n",
+        "        words = line.strip().split()\n",
+        "        for word in words:\n",
+        "            word_counts[word] = word_counts.get(word, 0) + 1\n",
+        "\n",
+        "    # Print each line from the input file\n",
+        "    print(\"Output:\")\n",
+        "    for line in lines:\n",
+        "        print(line.strip())\n",
+        "\n",
+        "    # Print the word count\n",
+        "    print(\"\\nWord_Count:\")\n",
+        "    for word, count in word_counts.items():\n",
+        "        print(f\"{word}: {count}\")\n",
+        "\n",
+        "    # Write the output to the output file\n",
+        "    with open(output_file, 'w') as outfile:\n",
+        "        outfile.write(\"Output:\\n\")\n",
+        "        for line in lines:\n",
+        "            outfile.write(line)\n",
+        "        outfile.write(\"\\nWord_Count:\\n\")\n",
+        "        for word, count in word_counts.items():\n",
+        "            outfile.write(f\"{word}: {count}\\n\")\n",
+        "\n",
+        "# Call the word_count_per_line function with the input and output file names\n",
+        "word_count_per_line('input.txt', 'output.txt')\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "HlTu6MvIL3qk",
+        "outputId": "5e3f3ef0-67f1-449c-d7d2-297c845b2eb4"
+      },
+      "execution_count": 14,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Output:\n",
+            "Python Course\n",
+            "Deep Learning Course\n",
+            "\n",
+            "Word_Count:\n",
+            "Python: 1\n",
+            "Course: 2\n",
+            "Deep: 1\n",
+            "Learning: 1\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def inches_to_cm_nested_loop():\n",
+        "    # Read heights in inches from user and store in a list\n",
+        "    heights_inches = []\n",
+        "    num_customers = int(input(\"Enter the number of customers: \"))\n",
+        "    for _ in range(num_customers):\n",
+        "        height = float(input(\"Enter height in inches: \"))\n",
+        "        heights_inches.append(height)\n",
+        "\n",
+        "    # Convert heights to centimeters using a nested loop\n",
+        "    heights_cm = []\n",
+        "    for height in heights_inches:\n",
+        "        for inch in [height]:\n",
+        "            cm = inch * 2.54\n",
+        "            heights_cm.append(round(cm, 2))\n",
+        "\n",
+        "    # Print the results\n",
+        "    print(\"Heights in inches:\", heights_inches)\n",
+        "    print(\"Heights in centimeters:\", heights_cm)\n",
+        "\n",
+        "# Call the function\n",
+        "inches_to_cm_nested_loop()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "p_fkCSb0ND31",
+        "outputId": "48368034-8f32-47af-f0f0-92a46a993dc8"
+      },
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter the number of customers: 5\n",
+            "Enter height in inches: 155\n",
+            "Enter height in inches: 164\n",
+            "Enter height in inches: 162\n",
+            "Enter height in inches: 123\n",
+            "Enter height in inches: 128\n",
+            "Heights in inches: [155.0, 164.0, 162.0, 123.0, 128.0]\n",
+            "Heights in centimeters: [393.7, 416.56, 411.48, 312.42, 325.12]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def inches_to_cm_list_comprehension():\n",
+        "    # Read heights in inches from user and store in a list\n",
+        "    num_customers = int(input(\"Enter the number of customers: \"))\n",
+        "    heights_inches = [float(input(\"Enter height in inches: \")) for _ in range(num_customers)]\n",
+        "\n",
+        "    # Convert heights to centimeters using list comprehensions\n",
+        "    heights_cm = [round(height * 2.54, 2) for height in heights_inches]\n",
+        "\n",
+        "    # Print the results\n",
+        "    print(\"Heights in inches:\", heights_inches)\n",
+        "    print(\"Heights in centimeters:\", heights_cm)\n",
+        "\n",
+        "# Call the function\n",
+        "inches_to_cm_list_comprehension()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "IKJIl3P7Nl0L",
+        "outputId": "32552c05-92c9-4ea5-c7d2-ec44d0445052"
+      },
+      "execution_count": 16,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter the number of customers: 5\n",
+            "Enter height in inches: 177\n",
+            "Enter height in inches: 155\n",
+            "Enter height in inches: 132\n",
+            "Enter height in inches: 186\n",
+            "Enter height in inches: 143\n",
+            "Heights in inches: [177.0, 155.0, 132.0, 186.0, 143.0]\n",
+            "Heights in centimeters: [449.58, 393.7, 335.28, 472.44, 363.22]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "aEwcmrXeWSHc"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
